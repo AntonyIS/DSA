@@ -5,4 +5,5 @@ The main file has logic for :
 - Linear Search
 - Binary Search
 - Recursive Binaru Search
+- Merge Sort
 
