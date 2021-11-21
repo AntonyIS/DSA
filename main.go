@@ -6,9 +6,13 @@ import (
 )
 
 func main() {
-	mylist := []int{1, 2, 4, 5, 6, 7, 8, 9}
+	sorted_list := []int{1, 2, 4, 5, 6, 7, 8, 9}
+	unsorted_list := []int{9, 2, 6, 1, 3, 7, 5}
+
+	res := merge_sort(unsorted_list)
+	fmt.Println(res)
 	// linear_search
-	ok, err := linear_search(mylist, 9)
+	ok, err := linear_search(sorted_list, 9)
 	fmt.Println("LINEAR SEARCH")
 	if err != nil {
 		fmt.Println("Error :", err)
@@ -17,7 +21,7 @@ func main() {
 	}
 	// binary_search
 	fmt.Println("BINARY SEARCH")
-	pass, err := binary_search(mylist, 9)
+	pass, err := binary_search(sorted_list, 9)
 
 	if err != nil {
 		fmt.Println("Error :", err)
@@ -27,7 +31,7 @@ func main() {
 
 	// binary_search
 	fmt.Println("RECURSIVE BINARY  SEARCH")
-	check, err := recursive_binary_search(mylist, 9)
+	check, err := recursive_binary_search(sorted_list, 9)
 
 	if err != nil {
 		fmt.Println("Error :", err)
@@ -112,5 +116,61 @@ func recursive_binary_search(list []int, target int) (bool, error) {
 		}
 
 	}
+
+}
+
+func merge_sort(list []int) []int {
+	/*
+		divide: divid a list into sublist
+		conquer : sort the sublist in the previous step
+		combine : merges the sublist
+	*/
+
+	if len(list) <= 1 {
+		return list
+	} else {
+		left_half, right_half := split(list)
+		left := merge_sort(left_half)
+		right := merge_sort(right_half)
+		return merge(left, right)
+	}
+}
+
+func split(list []int) ([]int, []int) {
+	/*
+	   Divide unsorted list at midpoint into sublist
+	   returns two sublist - left and right
+	*/
+	midpoint := len(list) / 2
+	left := list[:midpoint]
+	right := list[midpoint:]
+
+	return left, right
+}
+
+func merge(left []int, right []int) []int {
+	var merged_list []int
+	j := 0
+	i := 0
+
+	for i < len(left) && j < len(right) {
+		if left[i] < right[j] {
+			merged_list = append(merged_list, left[i])
+			i += 1
+		} else {
+			merged_list = append(merged_list, right[j])
+			j += 1
+		}
+	}
+
+	for i < len(left) {
+		merged_list = append(merged_list, left[i])
+		i += 1
+	}
+	for j < len(right) {
+		merged_list = append(merged_list, right[j])
+		j += 1
+	}
+	return merged_list
 
 }
