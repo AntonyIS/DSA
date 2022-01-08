@@ -7,11 +7,18 @@ Given an integer array nums, return true if any value appears at least twice in 
 func ContainsDuplicates(nums []int) bool {
 	duplicatsMapper := make(map[int]int)
 
-	for i, value := range nums {
+	for _, value := range nums {
+
 		if _, ok := duplicatsMapper[value]; ok {
-			return true
+			// The key already exists in the nums slice, increament the number of visited time
+			duplicatsMapper[value] += 1
+			// if value has been visited more than 2 times
+			if duplicatsMapper[value] == 2 {
+				return true
+			}
 		} else {
-			duplicatsMapper[value] = i
+			// Mark as once
+			duplicatsMapper[value] = 1
 		}
 	}
 	return false

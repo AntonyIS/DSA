@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	nums := []int{1, 2, 3}
+	nums := []int{1, 2, 3, 3, 1}
 	res := solutions.ContainsDuplicates(nums)
 	fmt.Println(res)
 }
