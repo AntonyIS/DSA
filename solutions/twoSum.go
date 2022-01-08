@@ -17,7 +17,6 @@ func TwoSum(nums []int, target int) []int {
 	// }
 
 	// Solution 2 : 0(1)
-
 	// Map to store complement keys
 	mapper := make(map[int]int)
 	for i, value := range nums {
@@ -26,10 +25,10 @@ func TwoSum(nums []int, target int) []int {
 		if _, ok := mapper[complement]; ok {
 			// Return the index of the 1st and 2nd value that sum up to target
 			return []int{mapper[value], i}
-		} else {
-			// Store value as the key and index as a value for reference
-			mapper[value] = i
 		}
+		// Store value as the key and index as a value for reference
+		mapper[value] = i
+
 	}
 	return []int{}
 

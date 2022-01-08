@@ -7,8 +7,7 @@ import (
 )
 
 func main() {
-	nums := []int{2, 7, 11, 15}
-	target := 9
-	res := solutions.TwoSum(nums, target)
+	prices := []int{8, 2, 7, 1, 5, 3, 6, 4}
+	res := solutions.BestTimeToBuyStock(prices)
 	fmt.Println(res)
 }
