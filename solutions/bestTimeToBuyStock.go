@@ -22,7 +22,7 @@ func BestTimeToBuyStock(prices []int) int {
 				maxP = profite
 			}
 		} else {
-			// If the right price is less than the left, move forward in the price slice
+			// If the right price is less than the left, move forward the left pointer
 			left = right
 		}
 		// Move forward on the right regardless

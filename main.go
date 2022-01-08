@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	prices := []int{8, 2, 7, 1, 5, 3, 6, 4}
-	res := solutions.BestTimeToBuyStock(prices)
+	nums := []int{1, 2, 3}
+	res := solutions.ContainsDuplicates(nums)
 	fmt.Println(res)
 }
