@@ -5,8 +5,16 @@ import "fmt"
 func main() {
 	fmt.Println("Welcome to Go LinkedList")
 	ll := LinkedList{}
+
+	// Check if LinkedList is empty
 	fmt.Println(ll.is_empty()) // true
-	fmt.Println(ll.length())   // 0
+	// Check the length of the LinkedList
+	fmt.Println(ll.length()) // 0
+	// Add nodes LinkedList
+	ll.prepend(10)
+	fmt.Println(ll.length()) // 1
+	ll.prepend(9)
+	fmt.Println(ll.length()) // 2
 }
 
 // Create a node : A node should have a data and a pointer to the next node if any else points to nil.
@@ -46,5 +54,20 @@ func (ll LinkedList) length() int {
 	}
 
 	return count
+}
 
+// Add a node at the beginning of a LinkedList
+func (ll *LinkedList) prepend(data int) {
+	// Create a node to add in the LinkedList
+	new_node := Node{data: data}
+
+	// Check if the head of the LinkedList is nil.
+	// Add new node as head node of the LinkedList
+	if ll.head == nil {
+		ll.head = &new_node
+	} else {
+		// LinkedList has existing nodes, add node to the existing nodes in the LinkedList
+		new_node.next_node = ll.head // Link new node to the head of the LinkedList
+		ll.head = &new_node          // Define new head for the LinkedList
+	}
 }
