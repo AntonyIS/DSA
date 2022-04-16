@@ -15,7 +15,10 @@ func main() {
 	fmt.Println(ll.length()) // 1
 	ll.prepend(9)
 	fmt.Println(ll.length()) // 2
-	ll.printLinkedList()
+	ll.printLinkedList()     // [9 10]
+	// Add a node at the end of the LinkedList
+	ll.append(7)
+	ll.printLinkedList() // [9 10 7]
 }
 
 // Create a node : A node should have a data and a pointer to the next node if any else points to nil.
@@ -32,15 +35,19 @@ type LinkedList struct {
 
 // Check if a LinkedList is empty
 func (ll LinkedList) is_empty() bool {
-	// Checks if a LinkedList is empty or not
-	// Returns a boolean true if empty else returns false
+	/*
+		Checks if a LinkedList is empty or not
+		Returns a boolean true if empty else returns false
+	*/
 	return ll.head == nil // if LinkedList head is nill, the LinkedList is empty
 }
 
 // Get the length of a LinkedList
 func (ll LinkedList) length() int {
-	// Returns the length(int) of items in a LinkedList
-	// This a linear operation 0(n)
+	/*
+		Returns the length(int) of items in a LinkedList
+		This a linear operation 0(n)
+	*/
 	count := 0 //Initial length of a LinkedList
 
 	current := ll.head // Keep track of the current node in a LinkedList
@@ -59,6 +66,11 @@ func (ll LinkedList) length() int {
 
 // Add a node at the beginning of a LinkedList
 func (ll *LinkedList) prepend(data int) {
+	/*
+		Adds a new node at the start of a LinkedList
+		Takes data of type int, adds data at the start of the LinkedList
+	*/
+
 	// Create a node to add in the LinkedList
 	new_node := Node{data: data}
 
@@ -75,6 +87,9 @@ func (ll *LinkedList) prepend(data int) {
 
 // Print the contents of the LinkedList
 func (ll LinkedList) printLinkedList() {
+	/*
+		Prints the content of a linkedlist
+	*/
 	// Define linkedlist to store the final content of a LinkedList
 	linkedList := []int{}
 
@@ -90,5 +105,27 @@ func (ll LinkedList) printLinkedList() {
 	}
 	// Log contents of the linkedList
 	fmt.Println(linkedList)
+}
+
+// Add node at the end of a LinkedList
+func (ll LinkedList) append(data int) {
+	/*
+		Adds a new node at the end of a LinkedList
+		Takes data of type int, added the data at the end of a LinkedList
+		Linear operation, 0(n)
+	*/
+	// Create new node
+	new_node := Node{data: data}
+
+	// Create current node to keep track of all nodes as we traverse the LinkedList
+	current := ll.head
+
+	// While current is not nil, continue looping
+	for current.next_node != nil {
+		// Move to the next node until we get to the end of the LinkedList
+		current = current.next_node
+	}
+	// At this point we at the last node
+	current.next_node = &new_node
 
 }
