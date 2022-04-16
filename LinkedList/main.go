@@ -15,6 +15,7 @@ func main() {
 	fmt.Println(ll.length()) // 1
 	ll.prepend(9)
 	fmt.Println(ll.length()) // 2
+	ll.printLinkedList()
 }
 
 // Create a node : A node should have a data and a pointer to the next node if any else points to nil.
@@ -70,4 +71,24 @@ func (ll *LinkedList) prepend(data int) {
 		new_node.next_node = ll.head // Link new node to the head of the LinkedList
 		ll.head = &new_node          // Define new head for the LinkedList
 	}
+}
+
+// Print the contents of the LinkedList
+func (ll LinkedList) printLinkedList() {
+	// Define linkedlist to store the final content of a LinkedList
+	linkedList := []int{}
+
+	// Define the current node, to keep track of nodes
+	current := ll.head
+
+	// While loop , as long as the current node is not the tail node
+	for current != nil {
+		// Add node data into linkedList
+		linkedList = append(linkedList, current.data)
+		// Move to the next node in the LinkdedList
+		current = current.next_node
+	}
+	// Log contents of the linkedList
+	fmt.Println(linkedList)
+
 }
