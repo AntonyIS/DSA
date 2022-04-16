@@ -24,7 +24,9 @@ func main() {
 	ll.printLinkedList() // [9 10 7]
 
 	ll.insert(54, 1)
-	ll.printLinkedList() // [9 54 10 7]
+	ll.printLinkedList()       // [9 54 10 7]
+	fmt.Println(ll.search(54)) // true
+	fmt.Println(ll.search(52)) // false
 }
 
 // Create a node : A node should have a data and a pointer to the next node if any else points to nil.
@@ -173,4 +175,28 @@ func (ll *LinkedList) insert(data, index int) {
 		// Link new node with the next node
 		new_node.next_node = next_node
 	}
+}
+
+func (ll LinkedList) search(data int) bool {
+	/*
+		Searches for data in a linked list
+		Returns a boolean
+	*/
+
+	// Create current node to keep track of nodes in the LinkedList
+	current := ll.head
+
+	// Loop as long as current next node is not nill
+	for current.next_node != nil {
+		// Check if the current node data is the data being searched
+		if current.data == data {
+			return true
+		} else {
+			// Move current to the next node
+			current = current.next_node
+		}
+	}
+	// Data not found
+	return false
+
 }
