@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 func main() {
 	fmt.Println("Welcome to Go LinkedList")
@@ -19,6 +22,9 @@ func main() {
 	// Add a node at the end of the LinkedList
 	ll.append(7)
 	ll.printLinkedList() // [9 10 7]
+
+	ll.insert(54, 1)
+	ll.printLinkedList() // [9 54 10 7]
 }
 
 // Create a node : A node should have a data and a pointer to the next node if any else points to nil.
@@ -120,12 +126,51 @@ func (ll LinkedList) append(data int) {
 	// Create current node to keep track of all nodes as we traverse the LinkedList
 	current := ll.head
 
-	// While current is not nil, continue looping
+	// While current.next_node is not nil, continue looping
 	for current.next_node != nil {
 		// Move to the next node until we get to the end of the LinkedList
 		current = current.next_node
 	}
 	// At this point we at the last node
 	current.next_node = &new_node
+}
 
+// Add a new node at a given index
+func (ll *LinkedList) insert(data, index int) {
+	/*
+		Adds a new node at a given index position
+		data : data/item to add into the LinkedList
+		index : Position to insert the new data in the node
+	*/
+	// Check if index == 0 and add data at the beginning of the LinkedList
+	if index == 0 {
+		ll.append(data)
+	} else {
+		// Check if index is out of bound
+		if index > ll.length() {
+			log.Fatal("Index out of bound")
+			return
+		}
+		// Create new node to insert into the LinkedList
+		new_node := Node{data: data}
+
+		// Keep track of nodes in LinkedList
+		current := ll.head
+
+		position := index // keep track of the position in the LinkedList
+
+		// Loop until position is 1, at this point index has been reached
+		for position < 1 {
+			position -= 1
+			current = current.next_node
+		}
+		// Define node before current node
+		prev_node := current
+		// Create the next node to attach new node before it
+		next_node := current.next_node
+		// Link prev_node with the new node
+		prev_node.next_node = &new_node
+		// Link new node with the next node
+		new_node.next_node = next_node
+	}
 }
