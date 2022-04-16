@@ -27,6 +27,17 @@ func main() {
 	ll.printLinkedList()       // [9 54 10 7]
 	fmt.Println(ll.search(54)) // true
 	fmt.Println(ll.search(52)) // false
+	ll.printLinkedList()
+	ll.removeAtIndex(0)
+	ll.printLinkedList()
+	ll.removeAtIndex(1)
+	ll.printLinkedList()
+	ll.removeAtIndex(2)
+	ll.printLinkedList() //[9 10 7]
+	ll.removeAtIndex(0)
+	ll.printLinkedList() //[9 10 7]
+	ll.removeAtIndex(0)
+	ll.printLinkedList() //[9 10 7]
 }
 
 // Create a node : A node should have a data and a pointer to the next node if any else points to nil.
@@ -177,6 +188,7 @@ func (ll *LinkedList) insert(data, index int) {
 	}
 }
 
+// Search data in the LinkedList
 func (ll LinkedList) search(data int) bool {
 	/*
 		Searches for data in a linked list
@@ -190,6 +202,7 @@ func (ll LinkedList) search(data int) bool {
 	for current.next_node != nil {
 		// Check if the current node data is the data being searched
 		if current.data == data {
+			// Data found
 			return true
 		} else {
 			// Move current to the next node
@@ -198,5 +211,55 @@ func (ll LinkedList) search(data int) bool {
 	}
 	// Data not found
 	return false
+}
+
+// Remove node at a given index
+func (ll *LinkedList) removeAtIndex(index int) {
+
+	/*
+		Remove a node at a given index
+	*/
+	// Check if index is out of bound
+	if index > ll.length() {
+		log.Fatal("Index out of bound")
+	} else if index < 0 {
+		log.Fatal("Index out of bound")
+	} else if ll.length() == 0 {
+		log.Fatal("Linked list empty")
+	}
+
+	// Check if index == 0
+	if index == 0 {
+		// head := ll.head
+		ll.head = ll.head.next_node
+
+		// head.next_node = nil
+
+		// ll.head = current.next_node
+		// current.next_node = nil
+		// fmt.Println(head.data)
+
+	} else {
+		// Current node to keep track of nodes
+		current := ll.head
+
+		position := index
+
+		// loop until position < 1
+		for position < 1 {
+			// Move to the next node
+			current = current.next_node
+			position -= 1
+		}
+
+		// Define previous node in the LinkedList
+		prev_node := current
+		// Define next node
+		next_node := current.next_node.next_node
+
+		// Link previous node with next node
+		prev_node.next_node = next_node
+
+	}
 
 }
