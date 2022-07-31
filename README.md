@@ -1,6 +1,6 @@
-# Golang Data Structures and Algoriths
+# Golang and Python Data Structures and Algorithms
 
-## Data structures in Golang
+## Data structures
 ### LinkedList
 * LinkedList in Go has the following basic operations that can be performed.
     * Add 
@@ -13,4 +13,6 @@
     * Check if empty
     * Size
 
+## Algorithms
+* Search 
 
